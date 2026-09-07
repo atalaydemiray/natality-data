@@ -15,12 +15,13 @@ The eleven files contain 41,576,190 occurrence records and occupy approximately 
 ## Read directly in R
 
 ```r
-# Install arrow separately if needed: install.packages("arrow")
+# Install dependencies if needed: install.packages(c("arrow", "digest"))
 base <- "https://github.com/atalaydemiray/natality-data/releases/download/source-v1-alpha/"
 file <- "natality_2024_source_v1.parquet"
 options(timeout = max(600, getOption("timeout")))
 download.file(paste0(base, file), file, mode = "wb")
-# Compare the downloaded SHA-256 with SHA256SUMS.txt before use.
+stopifnot(digest::digest(file, algo = "sha256", file = TRUE) ==
+  "f48df9c05e66ac9e7e23e3467c625d0298338b38cff5bfbb13f75cd144860f6b")
 births <- arrow::read_parquet(file, col_select = c("MAGER", "OEGest_Comb", "DBWT", "RESTATUS"))
 ```
 
