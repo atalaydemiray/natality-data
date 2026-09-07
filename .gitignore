@@ -1,0 +1,5 @@
+*.parquet
+*.zip
+*.dat
+.env*
+.DS_Store
