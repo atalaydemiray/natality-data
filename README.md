@@ -4,11 +4,13 @@ Led by Dr. Atalay Demiray. Independent project.
 
 This release adds 14 annual Parquets for 2000–2013 to the unchanged 2014–2024 release. The composite `data-manifest.json` pins all 25 files and their release URLs. Native dictionaries and validation bundles distinguish original-code preservation from clinical review. Read `DATA_USE.md` and `KNOWN_ISSUES.md` before analysis.
 
-The installable **natality 0.5.0.9007** R source package supports automatic downloads for 2000–2024. It is an alpha, not a CRAN release or independently reviewed harmonization. The 2025 archive is discoverable but has not been processed because annual layout authority is pending. Clinical graph holds for 2000–2010 remain.
+The installable **natality 0.5.0.9008** R source package supports automatic downloads for 2000–2024. It is an alpha, not a CRAN release or independently reviewed harmonization. The 2025 archive is discoverable but has not been processed because annual layout authority is pending. Clinical graph holds for 2000–2010 remain.
+
+The [0.5.0.9008 software update](https://github.com/atalaydemiray/natality-data/releases/tag/natality-r-0.5.0.9008-alpha) adds field-specific historical source reviews and corrected dictionary presentation. All 4,143 historical field comparisons are classified, with 132 unresolved; this is not approval of automatic harmonization. The dictionary covers 714 artifact-column identities and 6,218 annual entries. The known v1 `F_MM_` parser truncation is disclosed with its printed `F_MM_ PLAC` name and a read warning. Existing annual artifacts and their values are unchanged.
 
 ## Download files
 
-- [2000–2013 data and the R package](https://github.com/atalaydemiray/natality-data/releases/tag/source-v1-historical-alpha)
+- [2000–2013 data and the original R package](https://github.com/atalaydemiray/natality-data/releases/tag/source-v1-historical-alpha)
 - [2014–2024 data](https://github.com/atalaydemiray/natality-data/releases/tag/source-v1-alpha)
 
 Together these releases contain 98,919,648 occurrence records in 25 annual Parquet files (5.25 GB in total). The new release contains a composite manifest for all 25 years. The 2014–2024 files retain their original identities and URLs.
@@ -18,7 +20,7 @@ Together these releases contain 98,919,648 occurrence records in 25 annual Parqu
 ```r
 install.packages(c("digest", "jsonlite", "arrow"))
 install.packages(
-  "https://github.com/atalaydemiray/natality-data/releases/download/source-v1-historical-alpha/natality_0.5.0.9007.tar.gz",
+  "https://github.com/atalaydemiray/natality-data/releases/download/natality-r-0.5.0.9008-alpha/natality_0.5.0.9008.tar.gz",
   repos = NULL, type = "source"
 )
 library(natality)
