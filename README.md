@@ -4,13 +4,15 @@ Led by Dr. Atalay Demiray. Independent project.
 
 This release adds 14 annual Parquets for 2000–2013 to the unchanged 2014–2024 release. The composite `data-manifest.json` pins all 25 files and their release URLs. Native dictionaries and validation bundles distinguish original-code preservation from clinical review. Read `DATA_USE.md` and `KNOWN_ISSUES.md` before analysis.
 
-The installable **natality 0.7.0** R source package supports automatic downloads for 2000–2024. It is an alpha, not a CRAN release or independently reviewed harmonization. The 2025 archive is discoverable but has not been processed because annual layout authority is pending. Historical record-based clinical holds for 2000–2010 remain. The Atlas separately identifies published historical reference series.
+The installable **natality 0.7.1** R source package supports automatic downloads for 2000–2024. It is an alpha, not a CRAN release or independently reviewed harmonization. The 2025 archive is discoverable but has not been processed because annual layout authority is pending. Historical OE/clinical-estimate holds for 2000–2010 remain. The Atlas now supplies separately contracted exact LMP/BW/cesarean display counts, with original definitions and published controls kept distinct.
 
 The [0.6.0 software update](https://github.com/atalaydemiray/natality-data/releases/tag/natality-r-0.6.0-alpha) adds opt-in `standardize_natality()` for eight core concepts, with original columns and rows preserved, explicit missing-value statuses, and interval bounds for grouped ages. It retains all 4,143 classified historical comparisons and 132 unresolved decisions. The dictionary covers 714 artifact-column identities and 6,218 annual entries. The known v1 `F_MM_` naming exception remains disclosed. This is a research alpha, not fully validated harmonization; no generic gestation transformation is supplied. Existing annual artifacts are unchanged.
 
 The [0.6.1 update](https://github.com/atalaydemiray/natality-data/releases/tag/natality-r-0.6.1-alpha) adds `natality_concepts()` and the explicit `gestational_diabetes` transformation. The native field is `RF_GEST` in 2004–2013 and `RF_GDIAB` in 2014–2024; the reporting flag retains its name. Annual reporting and historical certificate eligibility are required. Generic combined diabetes is never substituted. Prepregnancy diabetes has family discovery, not a new transformation. Reporting coverage changes across years, so this does not establish nationally comparable prevalence.
 
 The [0.7.0 update](https://github.com/atalaydemiray/natality-data/releases/tag/natality-r-0.7.0-alpha) extends concept discovery to all 6,218 annual source fields: 519 families, 24 chronological boundaries and 6,518 comparisons. Use `natality_crosswalk()` and `natality_transitions()` to inspect annual fields, rules and source evidence. `align_natality()` preserves literal annual codes under a common concept identifier; it does not authorize common clinical values, population filters or pooling. It keeps multiple source variants explicit and separates reused names such as the historical TOBUSE reporting flag versus the later tobacco-use item. The catalog retains 1,485 reporting associations with their scope, 134 unresolved source comparisons and 80 unresolved annual reporting references. The latter two counts are different measures, not a unique-issue total.
+
+The [0.7.1 update](https://github.com/atalaydemiray/natality-data/releases/tag/natality-r-0.7.1-alpha) adds `natality_scientific_review()` and annual codebook guidance. Five AI-assisted roles reviewed 214 annual issues; seven documentary questions were clarified. A follow-up of the remaining 127 source comparisons and 80 reporting references improves 44 shared-reference explanations and two artifact-specific imputation interpretations. All 207 underlying evidence gaps remain; no new automatic recode or eligibility mask is enabled. Original codes and existing artifacts are unchanged. This is internal evidence review, not outside human scientific approval.
 
 ## Download files
 
@@ -24,7 +26,7 @@ Together these releases contain 98,919,648 occurrence records in 25 annual Parqu
 ```r
 install.packages(c("digest", "jsonlite", "arrow"))
 install.packages(
-  "https://github.com/atalaydemiray/natality-data/releases/download/natality-r-0.7.0-alpha/natality_0.7.0.tar.gz",
+  "https://github.com/atalaydemiray/natality-data/releases/download/natality-r-0.7.1-alpha/natality_0.7.1.tar.gz",
   repos = NULL, type = "source"
 )
 library(natality)
