@@ -4,9 +4,9 @@ Led by Dr. Atalay Demiray. Independent project.
 
 This release adds 14 annual Parquets for 2000–2013 to the unchanged 2014–2024 release. The composite `data-manifest.json` pins all 25 files and their release URLs. Native dictionaries and validation bundles distinguish original-code preservation from clinical review. Read `DATA_USE.md` and `KNOWN_ISSUES.md` before analysis.
 
-The installable **natality 0.5.0.9008** R source package supports automatic downloads for 2000–2024. It is an alpha, not a CRAN release or independently reviewed harmonization. The 2025 archive is discoverable but has not been processed because annual layout authority is pending. Clinical graph holds for 2000–2010 remain.
+The installable **natality 0.6.0** R source package supports automatic downloads for 2000–2024. It is an alpha, not a CRAN release or independently reviewed harmonization. The 2025 archive is discoverable but has not been processed because annual layout authority is pending. Historical record-based clinical holds for 2000–2010 remain. The Atlas separately identifies published historical reference series.
 
-The [0.5.0.9008 software update](https://github.com/atalaydemiray/natality-data/releases/tag/natality-r-0.5.0.9008-alpha) adds field-specific historical source reviews and corrected dictionary presentation. All 4,143 historical field comparisons are classified, with 132 unresolved; this is not approval of automatic harmonization. The dictionary covers 714 artifact-column identities and 6,218 annual entries. The known v1 `F_MM_` parser truncation is disclosed with its printed `F_MM_ PLAC` name and a read warning. Existing annual artifacts and their values are unchanged.
+The [0.6.0 software update](https://github.com/atalaydemiray/natality-data/releases/tag/natality-r-0.6.0-alpha) adds opt-in `standardize_natality()` for eight core concepts, with original columns and rows preserved, explicit missing-value statuses, and interval bounds for grouped ages. It retains all 4,143 classified historical comparisons and 132 unresolved decisions. The dictionary covers 714 artifact-column identities and 6,218 annual entries. The known v1 `F_MM_` naming exception remains disclosed. This is a research alpha, not fully validated harmonization; no generic gestation transformation is supplied. Existing annual artifacts are unchanged.
 
 ## Download files
 
@@ -20,7 +20,7 @@ Together these releases contain 98,919,648 occurrence records in 25 annual Parqu
 ```r
 install.packages(c("digest", "jsonlite", "arrow"))
 install.packages(
-  "https://github.com/atalaydemiray/natality-data/releases/download/natality-r-0.5.0.9008-alpha/natality_0.5.0.9008.tar.gz",
+  "https://github.com/atalaydemiray/natality-data/releases/download/natality-r-0.6.0-alpha/natality_0.6.0.tar.gz",
   repos = NULL, type = "source"
 )
 library(natality)
@@ -40,6 +40,17 @@ Use the annual dictionary before changing fields or pooling years; `DMAGE` is th
 
 Direct Arrow, SQL and Python reads can use the same Parquets. Verify the SHA-256 in `SHA256SUMS.txt`. Each historical dictionary includes native field names, byte positions, manual references, known issues and pending review status. Original records represent births, not unique mothers. `RESTATUS` codes 1–3 select U.S.-resident births. Unknown, nonreporting and out-of-range values are not interchangeable.
 
+## Optional core standardization
+
+```r
+x <- read_natality(2024, vars = c("DBWT", "MAGER"), population = "us_residents")
+z <- standardize_natality(x, 2024,
+  concepts = c("birthweight", "low_birthweight", "maternal_age"))
+table(z$nat_birthweight_status, useNA = "ifany")
+```
+
+Source columns and provenance remain intact. New `nat_*` columns carry explicit status fields. Grouped age endpoints remain intervals; undocumented historical codes are not assigned an invented meaning. See `?standardize_natality` for the annual scope and limitations.
+
 ## Limits and reporting issues
 
 Historical gestation measures remain distinct. Do not fill gaps by substituting computed/LMP gestation for modern obstetric estimate. The original 2005 file retains its Vermont undercoverage warning. The 2009/2010 supplemental mappings remain unapproved, and the 2010 clinical comparison discrepancy remains unresolved. The literal 2000 `DRINK` value `"9 "` is preserved with a warning; its meaning is not inferred.
@@ -49,6 +60,8 @@ Report reproducible problems through the [project issue tracker](https://github.
 ## Validation, citation and preservation
 
 The release check downloaded all 25 annual files without GitHub authentication and verified their hashes, occurrence and resident counts, all recorded maternal-age and birth-month counts, and offline reuse through natality 0.5.0.9007. Annual dictionaries and validation bundles document the scope of each check. Source preservation does not establish clinical comparability. The Atlas website remains in private development; this repository provides public data and the installable R package.
+
+The exact publicly downloaded 0.6.0 package also passed isolated installation and a 2024 resident-data check: original fields/provenance and all monthly counts matched, with 308,966 low-birthweight births among 3,625,941 records with known birthweight. Local R CMD check returned Status: OK with 987 passing expectations. These internal checks do not replace external scientific reproduction.
 
 Follow [DATA_USE.md](DATA_USE.md) and the [NCHS Data User Agreement](https://www.cdc.gov/nchs/policy/data-user-agreement.html). Cite the NCHS source years and the exact release and software version used; `natality_cite(2000:2024)` supplies separate source and software entries.
 
