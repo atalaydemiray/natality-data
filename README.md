@@ -4,9 +4,11 @@ Led by Dr. Atalay Demiray. Independent project.
 
 This release adds 14 annual Parquets for 2000–2013 to the unchanged 2014–2024 release. The composite `data-manifest.json` pins all 25 files and their release URLs. Native dictionaries and validation bundles distinguish original-code preservation from clinical review. Read `DATA_USE.md` and `KNOWN_ISSUES.md` before analysis.
 
-The installable **natality 0.6.0** R source package supports automatic downloads for 2000–2024. It is an alpha, not a CRAN release or independently reviewed harmonization. The 2025 archive is discoverable but has not been processed because annual layout authority is pending. Historical record-based clinical holds for 2000–2010 remain. The Atlas separately identifies published historical reference series.
+The installable **natality 0.6.1** R source package supports automatic downloads for 2000–2024. It is an alpha, not a CRAN release or independently reviewed harmonization. The 2025 archive is discoverable but has not been processed because annual layout authority is pending. Historical record-based clinical holds for 2000–2010 remain. The Atlas separately identifies published historical reference series.
 
 The [0.6.0 software update](https://github.com/atalaydemiray/natality-data/releases/tag/natality-r-0.6.0-alpha) adds opt-in `standardize_natality()` for eight core concepts, with original columns and rows preserved, explicit missing-value statuses, and interval bounds for grouped ages. It retains all 4,143 classified historical comparisons and 132 unresolved decisions. The dictionary covers 714 artifact-column identities and 6,218 annual entries. The known v1 `F_MM_` naming exception remains disclosed. This is a research alpha, not fully validated harmonization; no generic gestation transformation is supplied. Existing annual artifacts are unchanged.
+
+The [0.6.1 update](https://github.com/atalaydemiray/natality-data/releases/tag/natality-r-0.6.1-alpha) adds `natality_concepts()` and the explicit `gestational_diabetes` transformation. The native field is `RF_GEST` in 2004–2013 and `RF_GDIAB` in 2014–2024; the reporting flag retains its name. Annual reporting and historical certificate eligibility are required. Generic combined diabetes is never substituted. Prepregnancy diabetes has family discovery, not a new transformation. Reporting coverage changes across years, so this does not establish nationally comparable prevalence.
 
 ## Download files
 
@@ -20,7 +22,7 @@ Together these releases contain 98,919,648 occurrence records in 25 annual Parqu
 ```r
 install.packages(c("digest", "jsonlite", "arrow"))
 install.packages(
-  "https://github.com/atalaydemiray/natality-data/releases/download/natality-r-0.6.0-alpha/natality_0.6.0.tar.gz",
+  "https://github.com/atalaydemiray/natality-data/releases/download/natality-r-0.6.1-alpha/natality_0.6.1.tar.gz",
   repos = NULL, type = "source"
 )
 library(natality)
@@ -59,9 +61,11 @@ Report reproducible problems through the [project issue tracker](https://github.
 
 ## Validation, citation and preservation
 
-The release check downloaded all 25 annual files without GitHub authentication and verified their hashes, occurrence and resident counts, all recorded maternal-age and birth-month counts, and offline reuse through natality 0.5.0.9007. Annual dictionaries and validation bundles document the scope of each check. Source preservation does not establish clinical comparability. The Atlas website remains in private development; this repository provides public data and the installable R package.
+The release check downloaded all 25 annual files without GitHub authentication and verified their hashes, occurrence and resident counts, all recorded maternal-age and birth-month counts, and offline reuse through natality 0.5.0.9007. Annual dictionaries and validation bundles document the scope of each check. Source preservation does not establish clinical comparability. The [Natality Atlas](https://atalaydemiray.com/natality-atlas/) is public; its source repository remains private. This repository provides public data and the installable R package.
 
 The exact publicly downloaded 0.6.0 package also passed isolated installation and a 2024 resident-data check: original fields/provenance and all monthly counts matched, with 308,966 low-birthweight births among 3,625,941 records with known birthweight. Local R CMD check returned Status: OK with 987 passing expectations. These internal checks do not replace external scientific reproduction.
+
+The 0.6.1 package passed R CMD check with 1,524 expectations. All five release assets were anonymously verified. Actual-data checks covered 2004, 2013, 2014 and 2024 using the same R/catalog payload as the final tarball, matching every derived value to a separate raw-code calculation while preserving original columns. See its release evidence for exact artifact identities and scope. External scientific review remains pending.
 
 Follow [DATA_USE.md](DATA_USE.md) and the [NCHS Data User Agreement](https://www.cdc.gov/nchs/policy/data-user-agreement.html). Cite the NCHS source years and the exact release and software version used; `natality_cite(2000:2024)` supplies separate source and software entries.
 
